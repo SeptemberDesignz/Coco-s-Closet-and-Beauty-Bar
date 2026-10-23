@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Coco's Closet and Beauty Bar</title>
+  <meta name="description" content="Contact Coco's Closet and Beauty Bar via WhatsApp, Instagram or Facebook." />
+  <link rel="icon" href="images/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo-link" href="index.html" aria-label="Home">
+      <img src="images/logo.png" alt="Logo" />
+      <span class="logo-text">Coco's <span>Closet</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="shop.html#new-arrivals">New Arrivals</a></li>
+        <li><a href="shop.html?category=Women's%20Fashion">Women</a></li>
+        <li><a href="shop.html?category=Men's%20Fashion">Men</a></li>
+        <li><a href="shop.html?category=Skincare">Beauty &amp; Skincare</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a class="icon-btn" href="cart.html" aria-label="Cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 6 5 3H2"/></svg>
+        <span class="cart-count" data-cart-count hidden>0</span>
+      </a>
+      <button class="icon-btn hamburger" type="button" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="nav-backdrop"></div>
+
+<main class="container">
+  <div class="page-title">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info-card">
+      <h2>Coco's Closet and Beauty Bar</h2>
+      <p>Phone: <a data-phone href="#">—</a></p>
+      <p>WhatsApp: <a data-whatsapp href="#" target="_blank" rel="noopener">Message us</a></p>
+      <p>Instagram: <a data-instagram href="#" target="_blank" rel="noopener">@shoppingwithcoco</a></p>
+      <p>Facebook: <a data-facebook href="#" target="_blank" rel="noopener">@shoppingwithcoco</a></p>
+      <div style="margin-top:1.5rem;">
+        <a class="btn btn-primary" data-whatsapp href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="contact-info-card" style="background:var(--light-pink);">
+      <h2>Ordering is easy</h2>
+      <p>1. Browse the shop and add items to your cart.</p>
+      <p>2. Fill in your details on the cart page.</p>
+      <p>3. Tap “Checkout via WhatsApp” — your order summary will be ready in WhatsApp.</p>
+      <p>4. Send the message to confirm.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border:none;margin:0;padding:0;">
+      <span>© <span id="copyright-year"></span> <span data-business-name>Coco's Closet and Beauty Bar</span></span>
+      <button class="back-to-top" data-back-to-top type="button">Back to top ↑</button>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" data-whatsapp href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.2c-.2.6-1.2 1.1-1.7 1.2-.5.1-1 .1-1.7-.1-.7-.2-2.3-.9-3.7-2.3-1.4-1.4-2.1-3-2.3-3.7-.2-.7-.2-1.2-.1-1.7.1-.5.6-1.5 1.2-1.7.3-.1.6-.1.8.1.1.1.3.5.6 1.2.1.3.1.5-.1.7-.1.2-.3.4-.4.5-.1.1-.3.3-.1.6.2.3.7 1.1 1.5 1.8.8.7 1.6 1.2 1.9 1.3.3.1.5.1.7-.1.2-.2.6-.7.8-.9.2-.2.4-.2.6-.1.2.1 1.4.7 1.6.8.2.1.4.2.4.3.1.2.1.6-.1 1Z"/></svg>
+</a>
+
+<script defer src="settings.js"></script>
+<script defer src="products.js"></script>
+<script defer src="script.js"></script>
+</body>
+</html>
