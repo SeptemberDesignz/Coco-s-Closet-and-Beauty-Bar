@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Coco's Closet and Beauty Bar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --brand-pink: #EB005B; --brand-pink-dark: #C4004B; --brand-pink-light: #FFF0F5; --text-main: #111111; --text-muted: #666666; --bg-color: #FAFAFA; --border: #E8E8E8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Manrope", sans-serif; color: var(--text-main); line-height: 1.6; background: var(--bg-color); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 2rem; }
+    .card { background: white; padding: 4rem 3rem; border-radius: 32px; max-width: 500px; width: 100%; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; }
+    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.03em; }
+    p { margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem; }
+    .card h2 { margin-bottom: 2rem; color: var(--brand-pink); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    
+    .contact-links { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+    .contact-links a { display: flex; align-items: center; justify-content: center; gap: 0.8rem; padding: 1.2rem; background: var(--bg-color); border-radius: 16px; color: var(--text-main); font-weight: 700; text-decoration: none; transition: 0.3s; }
+    .contact-links a:hover { background: var(--brand-pink-light); color: var(--brand-pink); transform: translateY(-3px); box-shadow: 0 8px 16px rgba(235, 0, 91, 0.1); }
+    
+    .btn { display: inline-flex; justify-content: center; align-items: center; width: 100%; padding: 1.3rem; background: var(--brand-pink); color: white; text-decoration: none; border-radius: 99px; font-weight: 800; font-size: 1.1rem; border: none; cursor: pointer; transition: 0.3s; }
+    .btn:hover { background: var(--brand-pink-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(235, 0, 91, 0.2); }
+    .nav-link { color: var(--text-muted); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 2rem; font-size: 0.9rem; }
+    .nav-link:hover { color: var(--brand-pink); }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you. Order via WhatsApp or follow us for updates.</p>
+    <h2>Coco's Closet and Beauty Bar</h2>
+    
+    <div class="contact-links">
+      <a href="tel:+265880335011">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        +265 880 335 011
+      </a>
+      <a href="https://www.instagram.com/shoppingwithcoco/" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        Instagram @shoppingwithcoco
+      </a>
+      <a href="https://www.facebook.com/shoppingwithcoco/" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+        Facebook @shoppingwithcoco
+      </a>
+    </div>
+
+    <a href="https://wa.me/265880335011" target="_blank" class="btn">Message Us on WhatsApp</a>
+    <a href="index.html" class="nav-link">← Back to Home</a>
+  </div>
+
+</body>
+</html>

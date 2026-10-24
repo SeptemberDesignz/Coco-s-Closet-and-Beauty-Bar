@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Product Details | Coco's Closet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root { --brand-pink: #EB005B; --brand-pink-dark: #C4004B; --brand-pink-light: #FFF0F5; --text-main: #111111; --text-muted: #666666; --bg-color: #FAFAFA; --border: #E8E8E8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Manrope", sans-serif; color: var(--text-main); background: var(--white); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(100% - 3rem, 1200px); margin: 10rem auto 4rem; }
+    .header { display: flex; justify-content: space-between; margin-bottom: 3rem; align-items: center; }
+    .nav-link { color: var(--brand-pink); font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    
+    .product-detail { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
+    .media { background: var(--bg-color); border-radius: 24px; overflow: hidden; }
+    .media img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+    .info h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; line-height: 1.1; }
+    .category { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 1.5rem; display: block; }
+    .price { color: var(--brand-pink); font-size: 2rem; font-weight: 800; margin-bottom: 2rem; }
+    
+    .option-group { margin: 2rem 0; }
+    .option-group label { font-weight: 700; display: block; margin-bottom: 1rem; font-size: 0.95rem; }
+    .chips { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .chip { padding: 0.8rem 1.5rem; border: 2px solid var(--border); border-radius: 99px; cursor: pointer; background: white; font-weight: 600; transition: 0.2s; }
+    .chip:hover { border-color: var(--brand-pink); }
+    .chip.active { border-color: var(--brand-pink); color: var(--brand-pink); background: var(--brand-pink-light); }
+    
+    .add-btn { width: 100%; background: var(--brand-pink); color: white; padding: 1.2rem; border: none; border-radius: 99px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 2rem; transition: 0.3s; }
+    .add-btn:hover { background: var(--brand-pink-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(235, 0, 91, 0.2); }
+    
+    @media(max-width: 800px) { .product-detail { grid-template-columns: 1fr; gap: 2rem; } .info h1 { font-size: 2rem; } }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <a href="shop.html" class="nav-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Shop
+    </a>
+    <a href="cart.html" class="nav-link">View Cart</a>
+  </div>
+
+  <div class="product-detail" id="product-detail"></div>
+</div>
+
+<script>
+  // PRODUCT DATA
+  // To replace an image, ensure your image is named exactly product-01.jpg, etc. and place it in the /images/ folder
+  const products = [
+    { id: "p1", name: "Channel Handbag", price: 25000, category: "Accessories", image: "images/product-01.jpg", sizes: [], colours: ["Black", "Pink"] },
+    { id: "p2", name: "Coach Bag", price: 38000, category: "Women's Fashion", image: "images/product-02.jpg", sizes: ["S", "M", "L"], colours: ["Champagne", "Black"] },
+    { id: "p3", name: "Men's Linen Shirt", price: 32000, category: "Men's Fashion", image: "images/product-03.jpg", sizes: ["M", "L", "XL"], colours: ["White", "Sand"] },
+    { id: "p4", name: "Hydrating Glow Serum", price: 18000, category: "Skincare", image: "images/product-04.jpg", sizes: [], colours: [] },
+    { id: "p5", name: "Fragrance", price: 12000, category: "Beauty & Cosmetics", image: "images/product-05.jpg", sizes: [], colours: ["Nude", "Rose"] },
+    { id: "p6", name: "Soft Cotton Tee", price: 9500, category: "Men's Fashion", image: "images/product-06.jpg", sizes: ["S", "M", "L"], colours: ["White", "Black"] }
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('id');
+  const product = products.find(p => p.id === productId);
+  const container = document.getElementById('product-detail');
+
+  if (!product) {
+    container.innerHTML = "<h2>Product not found. <a href='shop.html'>Go back to shop</a></h2>";
+  } else {
+    let selectedSize = "";
+    let selectedColour = "";
+    
+    let sizeHtml = product.sizes.length > 0 ? `
+      <div class="option-group"><label>Select Size</label><div class="chips" id="size-chips">
+        ${product.sizes.map(s => `<div class="chip" onclick="selectSize('${s}', this)">${s}</div>`).join('')}
+      </div></div>` : "";
+
+    let colourHtml = product.colours.length > 0 ? `
+      <div class="option-group"><label>Select Colour</label><div class="chips" id="colour-chips">
+        ${product.colours.map(c => `<div class="chip" onclick="selectColour('${c}', this)">${c}</div>`).join('')}
+      </div></div>` : "";
+
+    container.innerHTML = `
+      <div class="media">
+        <img src="${product.image}" onerror="this.src='https://placehold.co/800x800/FFF0F5/EB005B?text=Product'">
+      </div>
+      <div class="info">
+        <span class="category">${product.category}</span>
+        <h1>${product.name}</h1>
+        <div class="price">MK ${product.price.toLocaleString()}</div>
+        ${sizeHtml}
+        ${colourHtml}
+        <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+      </div>
+    `;
+
+    window.selectSize = (size, el) => {
+      selectedSize = size;
+      document.querySelectorAll('#size-chips .chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+    };
+    window.selectColour = (colour, el) => {
+      selectedColour = colour;
+      document.querySelectorAll('#colour-chips .chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+    };
+
+    window.addToCart = () => {
+      if (product.sizes.length > 0 && !selectedSize) return alert("Please select a size.");
+      if (product.colours.length > 0 && !selectedColour) return alert("Please select a colour.");
+
+      let cart = JSON.parse(localStorage.getItem('coco_cart')) || [];
+      const cartKey = product.id + "-" + selectedSize + "-" + selectedColour;
+      
+      const existingItem = cart.find(item => item.key === cartKey);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ key: cartKey, id: product.id, name: product.name, price: product.price, image: product.image, size: selectedSize, colour: selectedColour, quantity: 1 });
+      }
+
+      localStorage.setItem('coco_cart', JSON.stringify(cart));
+      alert("Added to cart successfully!");
+      window.location.href = "cart.html";
+    };
+  }
+</script>
+</body>
+</html>

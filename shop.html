@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop | Coco's Closet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-pink: #EB005B; --brand-pink-dark: #C4004B; --brand-pink-light: #FFF0F5;
+      --text-main: #111111; --text-muted: #666666; --bg-color: #FAFAFA; --white: #FFFFFF; --border: #E8E8E8;
+      --radius-sm: 12px; --radius-md: 24px; --shadow-md: 0 12px 32px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Manrope", sans-serif; color: var(--text-main); background: var(--white); line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; transition: 0.3s; }
+    .container { width: min(100% - 3rem, 1400px); margin-inline: auto; }
+    
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+    
+    /* UPDATED LOGO STYLE */
+    .logo-link img { height: 48px; width: auto; max-width: 200px; object-fit: contain; }
+    
+    .main-nav ul { display: flex; gap: 2.5rem; list-style: none; }
+    .main-nav a { font-size: 0.9rem; font-weight: 600; position: relative; padding: 0.5rem 0; }
+    .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--brand-pink); transition: 0.3s; }
+    .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
+    .header-actions { display: flex; align-items: center; gap: 1.5rem; }
+    .cart-icon { position: relative; }
+    .cart-count { position: absolute; top: -8px; right: -10px; background: var(--brand-pink); color: white; font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    
+    .page-header { padding: 10rem 0 4rem; background: var(--bg-color); text-align: center; }
+    .page-title { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; }
+    
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2.5rem; padding: 4rem 0 6rem; }
+    .product-card { background: var(--white); border-radius: var(--radius-md); overflow: hidden; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-md); }
+    .product-img { aspect-ratio: 4/5; background: var(--bg-color); overflow: hidden; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .product-card:hover .product-img img { transform: scale(1.05); }
+    
+    .product-info { padding: 1.5rem; }
+    .product-cat { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+    .product-name { font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; }
+    .product-price { color: var(--text-main); font-weight: 800; font-size: 1.1rem; margin-bottom: 1.5rem; }
+    .add-to-cart-btn { width: 100%; padding: 0.8rem; background: var(--brand-pink-light); color: var(--brand-pink); border-radius: var(--radius-sm); font-weight: 700; font-size: 0.9rem; transition: 0.3s; text-align: center; display: block; }
+    .product-card:hover .add-to-cart-btn { background: var(--brand-pink); color: var(--white); }
+    
+    @media (max-width: 900px) { .main-nav { display: none; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo-link" href="index.html">
+      <img src="images/logo.png" alt="Logo" onerror="this.src='https://placehold.co/200x60/FFF0F5/EB005B?text=Your+Logo'">
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" class="active">Shop All</a></li>
+        <li><a href="shop.html?cat=women">Women</a></li>
+        <li><a href="shop.html?cat=men">Men</a></li>
+        <li><a href="shop.html?cat=beauty">Beauty & Skincare</a></li>
+        <li><a href="shop.html?cat=accessories">Accessories</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="cart-count" id="cart-count" hidden>0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="page-header">
+  <h1 class="page-title" id="page-title">All Products</h1>
+</div>
+
+<main class="container">
+  <div class="product-grid" id="shop-grid"></div>
+</main>
+
+<script>
+  const products = [
+    { id: "p1", name: "Classic Everyday Handbag", price: 25000, category: "Accessories", image: "images/product-01.jpg" },
+    { id: "p2", name: "Satin Slip Dress", price: 38000, category: "Women's Fashion", image: "images/product-02.jpg" },
+    { id: "p3", name: "Men's Linen Shirt", price: 32000, category: "Men's Fashion", image: "images/product-03.jpg" },
+    { id: "p4", name: "Hydrating Glow Serum", price: 18000, category: "Skincare", image: "images/product-04.jpg" },
+    { id: "p5", name: "Matte Lip Set", price: 12000, category: "Beauty & Cosmetics", image: "images/product-05.jpg" },
+    { id: "p6", name: "Soft Cotton Tee", price: 9500, category: "Men's Fashion", image: "images/product-06.jpg" }
+  ];
+
+  const params = new URLSearchParams(window.location.search);
+  const categoryFilter = params.get('cat');
+  let filteredProducts = products;
+  
+  if (categoryFilter) {
+    if (categoryFilter === 'women') {
+      filteredProducts = products.filter(p => p.category === "Women's Fashion");
+      document.getElementById('page-title').textContent = "Women's Fashion";
+    } else if (categoryFilter === 'men') {
+      filteredProducts = products.filter(p => p.category === "Men's Fashion");
+      document.getElementById('page-title').textContent = "Men's Fashion";
+    } else if (categoryFilter === 'beauty') {
+      filteredProducts = products.filter(p => p.category === "Skincare" || p.category === "Beauty & Cosmetics");
+      document.getElementById('page-title').textContent = "Beauty & Skincare";
+    } else if (categoryFilter === 'accessories') {
+      filteredProducts = products.filter(p => p.category === "Accessories");
+      document.getElementById('page-title').textContent = "Accessories";
+    }
+  }
+
+  const grid = document.getElementById('shop-grid');
+  filteredProducts.forEach(product => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
+    card.innerHTML = `
+      <a href="product.html?id=${product.id}" class="product-img">
+        <img src="${product.image}" onerror="this.src='https://placehold.co/600x800/FFF0F5/EB005B?text=Product'">
+      </a>
+      <div class="product-info">
+        <span class="product-cat">${product.category}</span>
+        <a href="product.html?id=${product.id}" class="product-name">${product.name}</a>
+        <span class="product-price">MK ${product.price.toLocaleString()}</span>
+        <a href="product.html?id=${product.id}" class="add-to-cart-btn">View Details</a>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  let cart = JSON.parse(localStorage.getItem('coco_cart')) || [];
+  if (cart.length > 0) {
+    document.getElementById('cart-count').textContent = cart.reduce((s, i) => s + i.quantity, 0);
+    document.getElementById('cart-count').hidden = false;
+  }
+</script>
+</body>
+</html>
