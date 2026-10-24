@@ -18,26 +18,27 @@
     .container { width: min(100% - 2rem, 1400px); margin-inline: auto; }
     
     .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 1rem; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
     
-    .logo-link { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text-main); white-space: nowrap; }
+    .logo-link { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.04em; color: var(--text-main); white-space: nowrap; z-index: 1001; }
     .logo-link span { color: var(--brand-pink); }
     
-    .main-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-    .main-nav::-webkit-scrollbar { display: none; }
-    .main-nav ul { display: flex; gap: 1.5rem; list-style: none; white-space: nowrap; }
+    .main-nav ul { display: flex; gap: 2rem; list-style: none; }
     .main-nav a { font-size: 0.9rem; font-weight: 600; position: relative; padding: 0.5rem 0; }
     .main-nav a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--brand-pink); transition: 0.3s; }
     .main-nav a:hover::after, .main-nav a.active::after { width: 100%; }
-    .header-actions { display: flex; align-items: center; gap: 1rem; flex-shrink: 0; }
+    
+    .header-actions { display: flex; align-items: center; gap: 1.2rem; z-index: 1001; }
     .cart-icon { position: relative; }
     .cart-count { position: absolute; top: -8px; right: -10px; background: var(--brand-pink); color: white; font-size: 0.65rem; font-weight: 800; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    
+    .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+    .menu-toggle span { display: block; width: 25px; height: 2px; background: var(--text-main); transition: 0.3s; }
     
     .page-header { padding: 8rem 0 3rem; background: var(--bg-color); text-align: center; }
     .page-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em; }
     
     .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; padding: 3rem 0 6rem; }
-    
     .product-card { background: #FFFFFF; border-radius: 16px; overflow: hidden; border: 1px solid #E8E8E8; display: flex; flex-direction: column; transition: 0.3s; }
     .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
     .product-img { width: 100%; aspect-ratio: 4/5; background: #FAFAFA; display: block; overflow: hidden; }
@@ -50,10 +51,16 @@
     .product-card:hover .add-to-cart-btn { background: #EB005B; color: #FFFFFF; }
     
     @media (max-width: 900px) {
-      .header-inner { height: 60px; gap: 0.5rem; }
-      .logo-link { font-size: 1.2rem; }
-      .main-nav ul { gap: 1rem; }
-      .main-nav a { font-size: 0.85rem; }
+      .menu-toggle { display: flex; }
+      .main-nav {
+        position: fixed; top: 0; right: -100%; width: 70%; max-width: 300px; height: 100vh;
+        background: white; padding: 6rem 2rem 2rem; box-shadow: -5px 0 30px rgba(0,0,0,0.1);
+        transition: 0.3s ease; z-index: 1000;
+      }
+      .main-nav.active { right: 0; }
+      .main-nav ul { flex-direction: column; gap: 1.5rem; }
+      .main-nav a { font-size: 1.1rem; }
+      
       .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
       .product-info { padding: 1rem 0.5rem; }
       .product-name { font-size: 0.95rem; }
@@ -69,13 +76,13 @@
     <a class="logo-link" href="index.html">
       Coco's <span>Closet</span>
     </a>
-    <nav class="main-nav">
+    <nav class="main-nav" id="main-nav">
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html" class="active">Shop</a></li>
+        <li><a href="shop.html" class="active">Shop All</a></li>
         <li><a href="shop.html?cat=women">Women</a></li>
         <li><a href="shop.html?cat=men">Men</a></li>
-        <li><a href="shop.html?cat=beauty">Beauty</a></li>
+        <li><a href="shop.html?cat=beauty">Beauty & Skincare</a></li>
         <li><a href="shop.html?cat=accessories">Accessories</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
@@ -85,6 +92,9 @@
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
         <span class="cart-count" id="cart-count" hidden>0</span>
       </a>
+      <div class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('active')">
+        <span></span><span></span><span></span>
+      </div>
     </div>
   </div>
 </header>
